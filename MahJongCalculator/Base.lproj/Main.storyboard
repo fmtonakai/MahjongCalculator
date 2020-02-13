@@ -1,24 +1,426 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VAB-jF-N03">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--麻雀点数計算-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MahJongCalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8000点オール" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWe-rV-STv">
+                                <rect key="frame" x="120.66666666666669" y="108" width="134" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="ESz-eq-Gqd">
+                                <rect key="frame" x="16" y="152" width="343" height="608"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXP-ER-h0n">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OPT-wc-SlL">
+                                                <rect key="frame" x="94.666666666666671" y="0.0" width="153.66666666666663" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0本場:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDl-8d-lzd">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49.666666666666664" height="32"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="Mxl-6d-2ob">
+                                                        <rect key="frame" x="59.666666666666671" y="0.0" width="94.000000000000014" height="32"/>
+                                                        <connections>
+                                                            <action selector="countersChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="wZD-9O-cOi"/>
+                                                        </connections>
+                                                    </stepper>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="OPT-wc-SlL" firstAttribute="centerX" secondItem="PXP-ER-h0n" secondAttribute="centerX" id="4QL-3L-Lkn"/>
+                                            <constraint firstItem="OPT-wc-SlL" firstAttribute="height" secondItem="PXP-ER-h0n" secondAttribute="height" id="TfH-eX-MLk"/>
+                                            <constraint firstItem="OPT-wc-SlL" firstAttribute="top" secondItem="PXP-ER-h0n" secondAttribute="top" id="jts-b4-I6N"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GRG-xM-KHS">
+                                        <rect key="frame" x="0.0" y="56" width="343" height="31"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-e2-5Ns">
+                                                <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="32"/>
+                                                <segments>
+                                                    <segment title="親"/>
+                                                    <segment title="子"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="roleChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="0pe-en-dU3"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ysH-ij-hgx">
+                                                <rect key="frame" x="176.66666666666663" y="0.0" width="166.33333333333337" height="32"/>
+                                                <segments>
+                                                    <segment title="ツモ"/>
+                                                    <segment title="ロン"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="winningTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="MYh-TU-kwv"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="rQV-ni-3bq">
+                                        <rect key="frame" x="0.0" y="111" width="343" height="32"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EPZ-x2-Vkx">
+                                                <rect key="frame" x="0.0" y="0.0" width="161" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1翻:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bca-kH-2wK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="57" height="32"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="13" translatesAutoresizingMaskIntoConstraints="NO" id="stR-S9-qoe">
+                                                        <rect key="frame" x="67" y="0.0" width="94" height="32"/>
+                                                        <connections>
+                                                            <action selector="hanChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="7Q8-2f-xt6"/>
+                                                        </connections>
+                                                    </stepper>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UyL-ar-aJm">
+                                                <rect key="frame" x="182" y="0.0" width="161" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="雀頭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSa-wO-xxR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="34.666666666666664" height="32"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jCv-eb-jY5">
+                                                        <rect key="frame" x="44.66666666666665" y="0.0" width="116.33333333333331" height="33"/>
+                                                        <segments>
+                                                            <segment title="数字"/>
+                                                            <segment title="役牌"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="headTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="mdn-MI-Ulp"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sGU-5k-f8F">
+                                        <rect key="frame" x="0.0" y="167" width="343" height="58"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待ち" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcj-CZ-tpu">
+                                                <rect key="frame" x="0.0" y="0.0" width="28.666666666666668" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="spn-38-zTr">
+                                                <rect key="frame" x="0.0" y="27" width="343" height="32"/>
+                                                <segments>
+                                                    <segment title="両面"/>
+                                                    <segment title="シャボ"/>
+                                                    <segment title="ペンチャン"/>
+                                                    <segment title="カンチャン"/>
+                                                    <segment title="単騎"/>
+                                                    <segment title="ノベタン"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="waitingChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="1Z7-el-ATA"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="3Rx-qJ-lJa">
+                                        <rect key="frame" x="0.0" y="249" width="343" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="七対子:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK5-H9-G5R">
+                                                <rect key="frame" x="0.0" y="0.0" width="56.666666666666664" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GR7-0r-62l">
+                                                <rect key="frame" x="77.666666666666671" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="isChiToitsuChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Rtx-FY-5fG"/>
+                                                </connections>
+                                            </switch>
+                                            <view contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ste-lH-v1C">
+                                                <rect key="frame" x="147.66666666666663" y="0.0" width="195.33333333333337" height="31"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dfT-D1-Dsj">
+                                        <rect key="frame" x="0.0" y="304" width="343" height="304"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="面子1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yve-5X-erN">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="9hV-NL-QIf">
+                                                <rect key="frame" x="0.0" y="33" width="343" height="31"/>
+                                                <subviews>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uNm-bN-bUh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="161" height="32"/>
+                                                        <segments>
+                                                            <segment title="順子"/>
+                                                            <segment title="刻子"/>
+                                                            <segment title="槓子"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="setsTypeChaged:" destination="BYZ-38-t0r" eventType="valueChanged" id="xK7-R6-eu7"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鳴き" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6A8-iP-Ofk">
+                                                        <rect key="frame" x="164" y="0.0" width="22.666666666666657" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6x4-DO-ffm">
+                                                        <rect key="frame" x="189.66666666666666" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="secretChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="GVl-Q4-vVU"/>
+                                                        </connections>
+                                                    </switch>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一九字牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gXh-x7-h5b">
+                                                        <rect key="frame" x="241.66666666666671" y="0.0" width="49.333333333333343" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="z0N-6h-ouT">
+                                                        <rect key="frame" x="294" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="edgeOrCharactorsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="1hB-sx-bO8"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="面子2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKj-mv-RsL">
+                                                <rect key="frame" x="0.0" y="80" width="343" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="5SU-S6-qIH">
+                                                <rect key="frame" x="0.0" y="113" width="343" height="31"/>
+                                                <subviews>
+                                                    <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bal-CL-5az">
+                                                        <rect key="frame" x="0.0" y="0.0" width="159" height="32"/>
+                                                        <segments>
+                                                            <segment title="順子"/>
+                                                            <segment title="刻子"/>
+                                                            <segment title="槓子"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="setsTypeChaged:" destination="BYZ-38-t0r" eventType="valueChanged" id="1JE-bR-L5r"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鳴き" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYN-FM-LIS">
+                                                        <rect key="frame" x="162" y="0.0" width="24.666666666666657" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rPO-bM-kJG">
+                                                        <rect key="frame" x="189.66666666666666" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="secretChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="fBY-gq-XE3"/>
+                                                        </connections>
+                                                    </switch>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一九字牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OWr-G6-ICF">
+                                                        <rect key="frame" x="241.66666666666671" y="0.0" width="49.333333333333343" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MNk-iv-VQE">
+                                                        <rect key="frame" x="294" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="edgeOrCharactorsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="X4h-aG-FWs"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="面子3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKg-MN-EHv">
+                                                <rect key="frame" x="0.0" y="160" width="343" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="J0I-9G-QF1">
+                                                <rect key="frame" x="0.0" y="193" width="343" height="31"/>
+                                                <subviews>
+                                                    <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CIR-Q7-Knz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="159" height="32"/>
+                                                        <segments>
+                                                            <segment title="順子"/>
+                                                            <segment title="刻子"/>
+                                                            <segment title="槓子"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="setsTypeChaged:" destination="BYZ-38-t0r" eventType="valueChanged" id="aWe-rI-nT4"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鳴き" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTX-63-WWR">
+                                                        <rect key="frame" x="162" y="0.0" width="24.666666666666657" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9a1-8d-41D">
+                                                        <rect key="frame" x="189.66666666666666" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="secretChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="sYY-lk-QjU"/>
+                                                        </connections>
+                                                    </switch>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一九字牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zkw-Dn-ebp">
+                                                        <rect key="frame" x="241.66666666666671" y="0.0" width="49.333333333333343" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b0t-t8-GOZ">
+                                                        <rect key="frame" x="294" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="edgeOrCharactorsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="1f3-9Z-WO2"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="面子4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veG-qe-Hnh">
+                                                <rect key="frame" x="0.0" y="240" width="343" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="EZG-2c-atY">
+                                                <rect key="frame" x="0.0" y="273" width="343" height="31"/>
+                                                <subviews>
+                                                    <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Yo-jZ-ojp">
+                                                        <rect key="frame" x="0.0" y="0.0" width="159" height="32"/>
+                                                        <segments>
+                                                            <segment title="順子"/>
+                                                            <segment title="刻子"/>
+                                                            <segment title="槓子"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="setsTypeChaged:" destination="BYZ-38-t0r" eventType="valueChanged" id="IVX-D3-6mK"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鳴き" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PO-za-Jos">
+                                                        <rect key="frame" x="162" y="0.0" width="24.666666666666657" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mdN-0l-VWe">
+                                                        <rect key="frame" x="189.66666666666666" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="secretChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="u3G-9a-J5d"/>
+                                                        </connections>
+                                                    </switch>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一九字牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="05o-hl-xD4">
+                                                        <rect key="frame" x="241.66666666666671" y="0.0" width="49.333333333333343" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="H4t-cW-9sw">
+                                                        <rect key="frame" x="294" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="edgeOrCharactorsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="2KK-4P-qz0"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ESz-eq-Gqd" secondAttribute="trailing" constant="16" id="GWV-Ka-cxb"/>
+                            <constraint firstItem="ESz-eq-Gqd" firstAttribute="top" secondItem="cWe-rV-STv" secondAttribute="bottom" constant="20" id="SOY-vO-rF2"/>
+                            <constraint firstItem="ESz-eq-Gqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="XM0-rv-8rQ"/>
+                            <constraint firstItem="cWe-rV-STv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ZRT-iW-iKc"/>
+                            <constraint firstItem="cWe-rV-STv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="hP6-WB-sbh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="麻雀点数計算" id="T3W-it-Hh6">
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="rGg-BX-T1f">
+                            <connections>
+                                <action selector="reset:" destination="BYZ-38-t0r" id="Dge-kd-5cn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="countersLabel" destination="dDl-8d-lzd" id="FjT-de-dGc"/>
+                        <outlet property="countersStepper" destination="Mxl-6d-2ob" id="xbK-K6-nU8"/>
+                        <outlet property="hanLabel" destination="Bca-kH-2wK" id="iEK-Bm-fvh"/>
+                        <outlet property="hanStepper" destination="stR-S9-qoe" id="yZs-h1-bdL"/>
+                        <outlet property="scoreLabel" destination="cWe-rV-STv" id="1em-P1-IrC"/>
+                        <outletCollection property="segmentedControls" destination="IqY-e2-5Ns" collectionClass="NSMutableArray" id="3s2-QV-45O"/>
+                        <outletCollection property="segmentedControls" destination="ysH-ij-hgx" collectionClass="NSMutableArray" id="0jb-rr-IWP"/>
+                        <outletCollection property="segmentedControls" destination="jCv-eb-jY5" collectionClass="NSMutableArray" id="pVs-yC-0Fq"/>
+                        <outletCollection property="segmentedControls" destination="spn-38-zTr" collectionClass="NSMutableArray" id="Il4-Lh-aas"/>
+                        <outletCollection property="switchControls" destination="GR7-0r-62l" collectionClass="NSMutableArray" id="7ln-Rf-F1A"/>
+                        <outletCollection property="segmentedControls" destination="uNm-bN-bUh" collectionClass="NSMutableArray" id="ahQ-ft-sMt"/>
+                        <outletCollection property="segmentedControls" destination="bal-CL-5az" collectionClass="NSMutableArray" id="5BN-2v-cgg"/>
+                        <outletCollection property="segmentedControls" destination="CIR-Q7-Knz" collectionClass="NSMutableArray" id="k3j-Py-xvw"/>
+                        <outletCollection property="segmentedControls" destination="5Yo-jZ-ojp" collectionClass="NSMutableArray" id="Q8n-b1-3MM"/>
+                        <outletCollection property="switchControls" destination="6x4-DO-ffm" collectionClass="NSMutableArray" id="Bxx-w0-xer"/>
+                        <outletCollection property="switchControls" destination="z0N-6h-ouT" collectionClass="NSMutableArray" id="ry6-Eo-MO3"/>
+                        <outletCollection property="switchControls" destination="rPO-bM-kJG" collectionClass="NSMutableArray" id="TvH-89-gBc"/>
+                        <outletCollection property="switchControls" destination="MNk-iv-VQE" collectionClass="NSMutableArray" id="bmB-vH-FFJ"/>
+                        <outletCollection property="switchControls" destination="9a1-8d-41D" collectionClass="NSMutableArray" id="S9m-K0-OUM"/>
+                        <outletCollection property="switchControls" destination="b0t-t8-GOZ" collectionClass="NSMutableArray" id="Xm6-X4-tXS"/>
+                        <outletCollection property="switchControls" destination="mdN-0l-VWe" collectionClass="NSMutableArray" id="RBv-5M-MfJ"/>
+                        <outletCollection property="switchControls" destination="H4t-cW-9sw" collectionClass="NSMutableArray" id="Dul-Jc-aT8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XMK-KG-GXm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VAB-jF-N03" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VSJ-Zw-Chx">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="a2J-Wf-Wnk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="StA-sl-oae" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
 </document>
