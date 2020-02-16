@@ -14,7 +14,7 @@ final class ViewController: UIViewController {
         didSet { calc.fu = fuCalcurator.score }
     }
     
-    var calc = MahjongPaymentCalculator(han: 1, fu: FuCalculator.default.score, role: .parent, counters: 0) {
+    var calc = PaymentCalculator(han: 1, fu: FuCalculator.default.score, role: .parent, counters: 0) {
         didSet { updateScore() }
     }
     

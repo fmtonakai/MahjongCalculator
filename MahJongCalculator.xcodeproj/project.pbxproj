@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA5E101523F44CD80032D38B /* MahJongCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MahJongCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA5E101523F44CD80032D38B /* 麻雀点数計算.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "麻雀点数計算.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5E101823F44CD80032D38B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA5E101A23F44CD80032D38B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DA5E101C23F44CD80032D38B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		DA5E101623F44CD80032D38B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA5E101523F44CD80032D38B /* MahJongCalculator.app */,
+				DA5E101523F44CD80032D38B /* 麻雀点数計算.app */,
 				DA5E102B23F44CD90032D38B /* MahJongCalculatorTests.xctest */,
 				DA5E103623F44CD90032D38B /* MahJongCalculatorUITests.xctest */,
 			);
@@ -148,7 +148,7 @@
 			);
 			name = MahJongCalculator;
 			productName = MahJongCalculator;
-			productReference = DA5E101523F44CD80032D38B /* MahJongCalculator.app */;
+			productReference = DA5E101523F44CD80032D38B /* 麻雀点数計算.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DA5E102A23F44CD90032D38B /* MahJongCalculatorTests */ = {
@@ -447,7 +447,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fmtonakai.MahJongCalculator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "麻雀点数計算";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -466,7 +466,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fmtonakai.MahJongCalculator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "麻雀点数計算";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MahjongPaymentCalculator {
+struct PaymentCalculator {
     enum Role: Double, CustomStringConvertible {
         case parent = 1.5, child = 1
         
@@ -31,12 +31,9 @@ struct MahjongPaymentCalculator {
 
         var description: String {
             switch self {
-            case let .all(score):
-                return "\(score)点 オール"
-            case let .normal(parent: parent, child: child):
-                return "親: \(parent)点, 子: \(child)点"
-            case let .direct(score):
-                return "\(score)の支払い"
+            case let .all(score): return "\(score)点 オール"
+            case let .normal(parent: parent, child: child): return "親: \(parent)点, 子: \(child)点"
+            case let .direct(score): return "\(score)の支払い"
             }
         }
     }
@@ -133,11 +130,5 @@ struct FuCalculator {
     enum WaitingType: Int {
         case ryanmenOrShabo = 0, others = 2
         var score: Int { rawValue }
-    }
-}
-
-extension FuCalculator {
-    init(isChiToitsu: Bool) {
-        self.init(isChiToitsu: true, winningType: .ron, headType: .numbers, waitingType: .ryanmenOrShabo, sets: [])
     }
 }
