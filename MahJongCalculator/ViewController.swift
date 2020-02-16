@@ -74,7 +74,7 @@ final class ViewController: UIViewController {
         fuCalcurator.headType = sender.selectedSegmentIndex == 0 ? .numbers : .charactors
     }
     @IBAction func waitingChanged(_ sender: UISegmentedControl) {
-        let result = [FuCalculator.WaitingType]([.ryanmen, .shabo, .penchan, .kanchan, .single, .nobetan])
+        let result = [FuCalculator.WaitingType]([.ryanmenOrShabo, .others])
         fuCalcurator.waitingType = result[sender.selectedSegmentIndex]
     }
     @IBAction func isChiToitsuChanged(_ sender: UISwitch) {

@@ -8,16 +8,12 @@
 
 import Foundation
 
-/// https://en.wikipedia.org/wiki/Japanese_Mahjong_scoring_rules
-
 struct MahjongPaymentCalculator {
-    enum Role: CustomStringConvertible {
-        case parent, child
+    enum Role: Double, CustomStringConvertible {
+        case parent = 1.5, child = 1
+        
         fileprivate var multipleScore: Double {
-            switch self {
-            case .parent: return 1.5
-            default: return 1.0
-            }
+            rawValue
         }
 
         var description: String {
@@ -82,14 +78,10 @@ struct MahjongPaymentCalculator {
     }
 }
 
-protocol FuCalculatable {
-    var score: Int { get }
-}
-
 struct FuCalculator {
     static let `default` = FuCalculator(winningType: .tsumo,
                                         headType: .numbers,
-                                        waitingType: .ryanmen,
+                                        waitingType: .ryanmenOrShabo,
                                         sets: [.init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: true),
                                                .init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false),
                                                .init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false),
@@ -105,25 +97,20 @@ struct FuCalculator {
         winningType == .tsumo && headType == .numbers && waitingType.score == 0 && sets.reduce(0, {$0 + $1.score}) == 0
     }
     
-    private var winningScore: Int {
-        if winningType == .tsumo { return 2 }
-        let isMenzen = sets.reduce(true, { $0 && $1.isSecret})
-        return isMenzen ? 10 : 0
-    }
-
     var score: Int {
         guard !isChiToitsu else { return 25 }
         guard sets.count == 4 else { return 0 }
         guard !isPinfuTsumo else { return 20 }
-        let baseScore = winningScore + headType.score + waitingType.score + sets.reduce(0, {$0 + $1.score}) + 20
+        let baseScore = winningType.score + headType.score + waitingType.score + sets.reduce(0, {$0 + $1.score}) + 20
         return min(110, Int( ceil(Double(baseScore) / 10) * 10))
     }
 
-    enum WinningType {
-        case tsumo, ron
+    enum WinningType: Int {
+        case tsumo = 0, ron = 2, menzenRon = 10
+        var score: Int { rawValue }
     }
     
-    enum HeadType: FuCalculatable {
+    enum HeadType {
         case charactors, numbers
         var score: Int {
             switch self {
@@ -133,7 +120,7 @@ struct FuCalculator {
         }
     }
 
-    struct JongSet: FuCalculatable {
+    struct JongSet {
         enum SetType {
             case shuntsu, kotsu, kantsu
             var score: Int {
@@ -160,19 +147,14 @@ struct FuCalculator {
         }
     }
 
-    enum WaitingType: FuCalculatable {
-        case ryanmen, shabo, penchan, kanchan, single, nobetan
-        var score: Int {
-            switch self {
-            case .ryanmen, .shabo: return 0
-            default: return 2
-            }
-        }
+    enum WaitingType: Int {
+        case ryanmenOrShabo = 0, others = 2
+        var score: Int { rawValue }
     }
 }
 
 extension FuCalculator {
     init(isChiToitsu: Bool) {
-        self.init(isChiToitsu: true, winningType: .ron, headType: .numbers, waitingType: .ryanmen, sets: [])
+        self.init(isChiToitsu: true, winningType: .ron, headType: .numbers, waitingType: .ryanmenOrShabo, sets: [])
     }
 }
