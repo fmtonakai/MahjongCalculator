@@ -14,10 +14,8 @@ final class ViewController: UIViewController {
         didSet { calc.fu = fuCalcurator.score }
     }
     
-    var calc = MahjongPaymentCalculator(han: 1, fu: 20, role: .parent, counters: 0) {
-        didSet {
-            updateScore()
-        }
+    var calc = MahjongPaymentCalculator(han: 1, fu: FuCalculator.default.score, role: .parent, counters: 0) {
+        didSet { updateScore() }
     }
     
     @IBOutlet weak var countersLabel: UILabel!
@@ -30,11 +28,10 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         updateScore()
     }
 
-    @IBAction func reset(_ sender: Any) {
+    @IBAction private func reset(_ sender: Any) {
         calc.counters = 0
         countersStepper.value = 0
         calc.han = 1
@@ -45,39 +42,39 @@ final class ViewController: UIViewController {
         switchControls.forEach({ $0.isOn = false })
     }
     
-    @IBAction func countersChanged(_ sender: UIStepper) {
+    @IBAction private func countersChanged(_ sender: UIStepper) {
         calc.counters = Int(sender.value)
     }
     
-    @IBAction func roleChanged(_ sender: UISegmentedControl) {
+    @IBAction private func roleChanged(_ sender: UISegmentedControl) {
         calc.role = sender.selectedSegmentIndex == 0 ? .parent : .child
     }
-    @IBAction func winningTypeChanged(_ sender: UISegmentedControl) {
+    @IBAction private func winningTypeChanged(_ sender: UISegmentedControl) {
         fuCalcurator.winningType = sender.selectedSegmentIndex == 0 ? .tsumo : .ron
     }
-    @IBAction func hanChanged(_ sender: UIStepper) {
+    @IBAction private func hanChanged(_ sender: UIStepper) {
         calc.han = Int(sender.value)
     }
-    @IBAction func headTypeChanged(_ sender: UISegmentedControl) {
+    @IBAction private func headTypeChanged(_ sender: UISegmentedControl) {
         fuCalcurator.headType = sender.selectedSegmentIndex == 0 ? .numbers : .charactors
     }
-    @IBAction func waitingChanged(_ sender: UISegmentedControl) {
+    @IBAction private func waitingChanged(_ sender: UISegmentedControl) {
         let result = [FuCalculator.WaitingType]([.ryanmenOrShabo, .others])
         fuCalcurator.waitingType = result[sender.selectedSegmentIndex]
     }
-    @IBAction func isChiToitsuChanged(_ sender: UISwitch) {
+    @IBAction private func isChiToitsuChanged(_ sender: UISwitch) {
         fuCalcurator.isChiToitsu = sender.isOn
     }
-    @IBAction func setsTypeChaged(_ sender: UISegmentedControl) {
+    @IBAction private func setsTypeChaged(_ sender: UISegmentedControl) {
         let index = sender.tag
         let result: [FuCalculator.JongSet.SetType] = [.shuntsu, .kotsu, .kantsu]
         fuCalcurator.sets[index].type = result[sender.selectedSegmentIndex]
     }
-    @IBAction func secretChanged(_ sender: UISwitch) {
+    @IBAction private func secretChanged(_ sender: UISwitch) {
         let index = sender.tag
         fuCalcurator.sets[index].isSecret = !sender.isOn
     }
-    @IBAction func edgeOrCharactorsChanged(_ sender: UISwitch) {
+    @IBAction private func edgeOrCharactorsChanged(_ sender: UISwitch) {
         let index = sender.tag
         fuCalcurator.sets[index].isEdgeOrCharactors = sender.isOn
     }
