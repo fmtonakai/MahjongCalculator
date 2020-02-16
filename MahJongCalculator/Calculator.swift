@@ -110,40 +110,23 @@ struct FuCalculator {
         var score: Int { rawValue }
     }
     
-    enum HeadType {
-        case charactors, numbers
-        var score: Int {
-            switch self {
-            case .charactors: return 2
-            case .numbers: return 0
-            }
-        }
+    enum HeadType: Int {
+        case charactors = 2, numbers = 0
+        var score: Int { rawValue }
     }
 
     struct JongSet {
-        enum SetType {
-            case shuntsu, kotsu, kantsu
-            var score: Int {
-                switch self {
-                case .shuntsu: return 0
-                case .kotsu: return 2
-                case .kantsu: return 8
-                }
-            }
+        enum SetType: Int {
+            case shuntsu = 0, kotsu = 2, kantsu = 8
+            var score: Int { rawValue }
         }
+        
         var type: SetType
         var isSecret: Bool
         var isEdgeOrCharactors: Bool
 
         var score: Int {
-            var score = type.score
-            if isSecret {
-                score *= 2
-            }
-            if isEdgeOrCharactors {
-                score *= 2
-            }
-            return score
+            type.score * (isSecret ? 2 : 1) * (isEdgeOrCharactors ? 2 : 1)
         }
     }
 
