@@ -9,23 +9,15 @@
 import UIKit
 
 final class ViewController: UIViewController {
-    var han = 1 {
-        didSet {
-            updateScore()
-            hanLabel.text = "\(han)翻:"
-        }
-    }
-    var counters = 0 {
-        didSet {
-            updateScore()
-            countersLabel.text = "\(counters)本場"
-        }
-    }
-    var role: MahjongPaymentCalculator.Role = .parent {
-        didSet { updateScore() }
-    }
+    
     var fuCalcurator: FuCalculator = .default {
-        didSet { updateScore() }
+        didSet { calc.fu = fuCalcurator.score }
+    }
+    
+    var calc = MahjongPaymentCalculator(han: 1, fu: 20, role: .parent, counters: 0) {
+        didSet {
+            updateScore()
+        }
     }
     
     @IBOutlet weak var countersLabel: UILabel!
@@ -36,10 +28,6 @@ final class ViewController: UIViewController {
     @IBOutlet weak var hanStepper: UIStepper!
     @IBOutlet weak var hanLabel: UILabel!
     
-    private var calc: MahjongPaymentCalculator {
-        MahjongPaymentCalculator(han: han, fu: fuCalcurator.score, role: role, counters: counters)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -47,28 +35,28 @@ final class ViewController: UIViewController {
     }
 
     @IBAction func reset(_ sender: Any) {
-        counters = 0
+        calc.counters = 0
         countersStepper.value = 0
-        han = 1
+        calc.han = 1
         hanStepper.value = 1
-        role = .parent
+        calc.role = .parent
         fuCalcurator = .default
         segmentedControls.forEach({ $0.selectedSegmentIndex = 0 })
         switchControls.forEach({ $0.isOn = false })
     }
     
     @IBAction func countersChanged(_ sender: UIStepper) {
-        counters = Int(sender.value)
+        calc.counters = Int(sender.value)
     }
     
     @IBAction func roleChanged(_ sender: UISegmentedControl) {
-        role = sender.selectedSegmentIndex == 0 ? .parent : .child
+        calc.role = sender.selectedSegmentIndex == 0 ? .parent : .child
     }
     @IBAction func winningTypeChanged(_ sender: UISegmentedControl) {
         fuCalcurator.winningType = sender.selectedSegmentIndex == 0 ? .tsumo : .ron
     }
     @IBAction func hanChanged(_ sender: UIStepper) {
-        han = Int(sender.value)
+        calc.han = Int(sender.value)
     }
     @IBAction func headTypeChanged(_ sender: UISegmentedControl) {
         fuCalcurator.headType = sender.selectedSegmentIndex == 0 ? .numbers : .charactors
@@ -96,6 +84,8 @@ final class ViewController: UIViewController {
     
     private func updateScore() {
         let payment = fuCalcurator.winningType == .tsumo ? calc.paymentForTsumo : calc.paymentForRon
-        scoreLabel.text = "\(han)翻\(fuCalcurator.score)符 \(payment)"
+        scoreLabel.text = "\(calc.han)翻\(fuCalcurator.score)符 \(payment)"
+        hanLabel.text = "\(calc.han)翻:"
+        countersLabel.text = "\(calc.counters)本場"
     }
 }
