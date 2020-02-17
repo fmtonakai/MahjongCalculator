@@ -79,7 +79,7 @@ struct FuCalculator {
     static let `default` = FuCalculator(winningType: .tsumo,
                                         headType: .numbers,
                                         waitingType: .ryanmenOrShabo,
-                                        sets: [.init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: true),
+                                        sets: [.init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false),
                                                .init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false),
                                                .init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false),
                                                .init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false)])
@@ -99,21 +99,22 @@ struct FuCalculator {
         guard sets.count == 4 else { return 0 }
         guard !isPinfuTsumo else { return 20 }
         let baseScore = winningType.score + headType.score + waitingType.score + sets.reduce(0, {$0 + $1.score}) + 20
+        print(baseScore)
         return min(110, Int( ceil(Double(baseScore) / 10) * 10))
     }
 
-    enum WinningType: Int {
-        case tsumo = 0, ron = 2, menzenRon = 10
+    enum WinningType: Int, CaseIterable {
+        case tsumo = 2, ron = 0, menzenRon = 10
         var score: Int { rawValue }
     }
     
-    enum HeadType: Int {
+    enum HeadType: Int, CaseIterable {
         case charactors = 2, numbers = 0
         var score: Int { rawValue }
     }
 
     struct JongSet {
-        enum SetType: Int {
+        enum SetType: Int, CaseIterable {
             case shuntsu = 0, kotsu = 2, kantsu = 8
             var score: Int { rawValue }
         }
@@ -127,7 +128,7 @@ struct FuCalculator {
         }
     }
 
-    enum WaitingType: Int {
+    enum WaitingType: Int, CaseIterable {
         case ryanmenOrShabo = 0, others = 2
         var score: Int { rawValue }
     }
