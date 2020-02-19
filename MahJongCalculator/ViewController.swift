@@ -88,7 +88,7 @@ final class ViewController: UIViewController {
     
     private func updateScore() {
         let payment = fuCalcurator.winningType == .tsumo ? calc.paymentForTsumo : calc.paymentForRon
-        scoreLabel.text = "\(calc.han)翻\(fuCalcurator.score)符 \(payment)"
+        scoreLabel.text = "\(calc.correctedFu)符\(calc.han)翻 \(payment)"
         hanLabel.text = "\(calc.han)翻:"
         countersLabel.text = "\(calc.counters)本場"
     }

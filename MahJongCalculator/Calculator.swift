@@ -42,6 +42,13 @@ struct PaymentCalculator {
     var role: Role
     var counters: Int
 
+    // If fu is 20 and han is 1, points will be lower than lowest point 1000.
+    // So fu value should be corrected to 30.
+    var correctedFu: Int {
+        guard (han, fu) == (1, 20) else { return fu }
+        return 30
+    }
+    
     private var basePoint: Int {
         switch han {
         case 13... : return Int(32000 * role.multipleScore)
@@ -54,7 +61,7 @@ struct PaymentCalculator {
     }
 
     private var lowerPoint: Int {
-        min(Int(8000 * role.multipleScore), Int(ceil(Double(fu) * 4 * role.multipleScore * pow(2.0, Double(han + 2)) / 100) * 100))
+        min(Int(8000 * role.multipleScore), Int(ceil(Double(correctedFu) * 4 * role.multipleScore * pow(2.0, Double(han + 2)) / 100) * 100))
     }
 
     private func integral(score: Double) -> Int {
