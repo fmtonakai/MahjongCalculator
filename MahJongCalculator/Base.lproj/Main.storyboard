@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VAB-jF-N03">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,7 +11,7 @@
         <!--麻雀点数計算-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MahJongCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="麻雀点数計算" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,63 +79,48 @@
                                             </segmentedControl>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="rQV-ni-3bq">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="rQV-ni-3bq">
                                         <rect key="frame" x="0.0" y="111" width="343" height="32"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EPZ-x2-Vkx">
-                                                <rect key="frame" x="0.0" y="0.0" width="161" height="32"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1翻:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bca-kH-2wK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="57" height="32"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="13" translatesAutoresizingMaskIntoConstraints="NO" id="stR-S9-qoe">
-                                                        <rect key="frame" x="67" y="0.0" width="94" height="32"/>
-                                                        <connections>
-                                                            <action selector="hanChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="7Q8-2f-xt6"/>
-                                                        </connections>
-                                                    </stepper>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UyL-ar-aJm">
-                                                <rect key="frame" x="182" y="0.0" width="161" height="32"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="雀頭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSa-wO-xxR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="28.666666666666668" height="32"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jCv-eb-jY5">
-                                                        <rect key="frame" x="38.66666666666665" y="0.0" width="122.33333333333331" height="33"/>
-                                                        <segments>
-                                                            <segment title="数字"/>
-                                                            <segment title="役牌"/>
-                                                        </segments>
-                                                        <connections>
-                                                            <action selector="headTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="mdn-MI-Ulp"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                </subviews>
-                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="1翻:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bca-kH-2wK">
+                                                <rect key="frame" x="0.0" y="0.0" width="29.666666666666668" height="32"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="13" translatesAutoresizingMaskIntoConstraints="NO" id="stR-S9-qoe">
+                                                <rect key="frame" x="53.666666666666671" y="0.0" width="94.000000000000014" height="32"/>
+                                                <connections>
+                                                    <action selector="hanChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="7Q8-2f-xt6"/>
+                                                </connections>
+                                            </stepper>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="D7u-Lb-tRN">
+                                                <rect key="frame" x="171.66666666666663" y="0.0" width="171.33333333333337" height="33"/>
+                                                <segments>
+                                                    <segment title="ー"/>
+                                                    <segment title="ピンフツモ"/>
+                                                    <segment title="七対子"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="exceptionTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="kXZ-Cb-7b3"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="muL-dz-Ygf">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="muL-dz-Ygf">
                                         <rect key="frame" x="0.0" y="167" width="343" height="31"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sGU-5k-f8F">
-                                                <rect key="frame" x="0.0" y="0.0" width="231" height="31"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sGU-5k-f8F">
+                                                <rect key="frame" x="0.0" y="0.0" width="208.33333333333334" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待ち" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcj-CZ-tpu">
-                                                        <rect key="frame" x="0.0" y="7" width="28.666666666666668" height="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="待ち" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcj-CZ-tpu">
+                                                        <rect key="frame" x="0.0" y="7.3333333333333144" width="28.666666666666668" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="spn-38-zTr">
-                                                        <rect key="frame" x="38.666666666666671" y="0.0" width="192.33333333333331" height="32"/>
+                                                        <rect key="frame" x="38.666666666666671" y="0.0" width="169.66666666666663" height="32"/>
                                                         <segments>
                                                             <segment title="両面・シャボ"/>
                                                             <segment title="それ以外"/>
@@ -145,21 +131,25 @@
                                                     </segmentedControl>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3Rx-qJ-lJa">
-                                                <rect key="frame" x="239" y="0.0" width="104" height="31"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UyL-ar-aJm">
+                                                <rect key="frame" x="216.33333333333334" y="0.0" width="126.66666666666666" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="七対子:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK5-H9-G5R">
-                                                        <rect key="frame" x="0.0" y="0.0" width="47" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="雀頭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSa-wO-xxR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="28.666666666666668" height="31"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GR7-0r-62l">
-                                                        <rect key="frame" x="55" y="0.0" width="51" height="31"/>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jCv-eb-jY5">
+                                                        <rect key="frame" x="36.666666666666657" y="0.0" width="90" height="32"/>
+                                                        <segments>
+                                                            <segment title="数字"/>
+                                                            <segment title="役牌"/>
+                                                        </segments>
                                                         <connections>
-                                                            <action selector="isChiToitsuChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Rtx-FY-5fG"/>
+                                                            <action selector="headTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="mdn-MI-Ulp"/>
                                                         </connections>
-                                                    </switch>
+                                                    </segmentedControl>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -398,16 +388,15 @@
                         <outlet property="countersStepper" destination="Mxl-6d-2ob" id="xbK-K6-nU8"/>
                         <outlet property="hanLabel" destination="Bca-kH-2wK" id="iEK-Bm-fvh"/>
                         <outlet property="hanStepper" destination="stR-S9-qoe" id="yZs-h1-bdL"/>
+                        <outlet property="mentsuStackView" destination="dfT-D1-Dsj" id="ztf-oE-67Q"/>
                         <outlet property="scoreLabel" destination="cWe-rV-STv" id="1em-P1-IrC"/>
                         <outletCollection property="segmentedControls" destination="IqY-e2-5Ns" collectionClass="NSMutableArray" id="3s2-QV-45O"/>
                         <outletCollection property="segmentedControls" destination="ysH-ij-hgx" collectionClass="NSMutableArray" id="0jb-rr-IWP"/>
-                        <outletCollection property="segmentedControls" destination="jCv-eb-jY5" collectionClass="NSMutableArray" id="pVs-yC-0Fq"/>
                         <outletCollection property="segmentedControls" destination="uNm-bN-bUh" collectionClass="NSMutableArray" id="ahQ-ft-sMt"/>
                         <outletCollection property="segmentedControls" destination="bal-CL-5az" collectionClass="NSMutableArray" id="5BN-2v-cgg"/>
                         <outletCollection property="segmentedControls" destination="CIR-Q7-Knz" collectionClass="NSMutableArray" id="k3j-Py-xvw"/>
                         <outletCollection property="segmentedControls" destination="5Yo-jZ-ojp" collectionClass="NSMutableArray" id="Q8n-b1-3MM"/>
                         <outletCollection property="segmentedControls" destination="spn-38-zTr" collectionClass="NSMutableArray" id="Il4-Lh-aas"/>
-                        <outletCollection property="switchControls" destination="GR7-0r-62l" collectionClass="NSMutableArray" id="7ln-Rf-F1A"/>
                         <outletCollection property="switchControls" destination="6x4-DO-ffm" collectionClass="NSMutableArray" id="Bxx-w0-xer"/>
                         <outletCollection property="switchControls" destination="z0N-6h-ouT" collectionClass="NSMutableArray" id="ry6-Eo-MO3"/>
                         <outletCollection property="switchControls" destination="rPO-bM-kJG" collectionClass="NSMutableArray" id="TvH-89-gBc"/>
@@ -416,6 +405,8 @@
                         <outletCollection property="switchControls" destination="b0t-t8-GOZ" collectionClass="NSMutableArray" id="Xm6-X4-tXS"/>
                         <outletCollection property="switchControls" destination="mdN-0l-VWe" collectionClass="NSMutableArray" id="RBv-5M-MfJ"/>
                         <outletCollection property="switchControls" destination="H4t-cW-9sw" collectionClass="NSMutableArray" id="Dul-Jc-aT8"/>
+                        <outletCollection property="segmentedControls" destination="jCv-eb-jY5" collectionClass="NSMutableArray" id="pVs-yC-0Fq"/>
+                        <outletCollection property="segmentedControls" destination="D7u-Lb-tRN" collectionClass="NSMutableArray" id="RQB-PZ-NEY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

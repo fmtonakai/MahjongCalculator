@@ -10,11 +10,11 @@ import UIKit
 
 final class ViewController: UIViewController {
     
-    var fuCalcurator: FuCalculator = .default {
-        didSet { calc.fu = fuCalcurator.score }
+    private var fuCalculator: FuCalculator = .default {
+        didSet { calc.fu = fuCalculator.score }
     }
     
-    var calc = PaymentCalculator(han: 1, fu: FuCalculator.default.score, role: .parent, counters: 0) {
+    private var calc = PaymentCalculator(han: 1, fu: FuCalculator.default.score, role: .parent, counters: 0) {
         didSet { updateScore() }
     }
     
@@ -25,6 +25,14 @@ final class ViewController: UIViewController {
     @IBOutlet var switchControls: [UISwitch]!
     @IBOutlet weak var hanStepper: UIStepper!
     @IBOutlet weak var hanLabel: UILabel!
+    @IBOutlet weak var mentsuStackView: UIStackView!
+    
+    private var isMentsuEditable: Bool = true {
+        didSet {
+            mentsuStackView.isUserInteractionEnabled = isMentsuEditable
+            mentsuStackView.alpha = isMentsuEditable ? 1 : 0.5
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +46,10 @@ final class ViewController: UIViewController {
         calc.han = 1
         hanStepper.value = 1
         calc.role = .parent
-        fuCalcurator = .default
+        fuCalculator = .default
         segmentedControls.forEach({ $0.selectedSegmentIndex = 0 })
         switchControls.forEach({ $0.isOn = false })
+        isMentsuEditable = true
     }
     
     @IBAction private func countersChanged(_ sender: UIStepper) {
@@ -51,8 +60,20 @@ final class ViewController: UIViewController {
         calc.role = sender.selectedSegmentIndex == 0 ? .parent : .child
     }
     
+    @IBAction func exceptionTypeChanged(_ sender: UISegmentedControl) {
+        fuCalculator.exceptionType = FuCalculator.ExceptionType.allCases[sender.selectedSegmentIndex]
+        if sender.selectedSegmentIndex == 0 {
+            isMentsuEditable = true
+        }
+        else {
+            calc.han = max(2, calc.han)
+            hanStepper.value = Double(calc.han)
+            isMentsuEditable = false
+        }
+    }
+    
     @IBAction private func winningTypeChanged(_ sender: UISegmentedControl) {
-        fuCalcurator.winningType = FuCalculator.WinningType.allCases[sender.selectedSegmentIndex]
+        fuCalculator.winningType = FuCalculator.WinningType.allCases[sender.selectedSegmentIndex]
     }
     
     @IBAction private func hanChanged(_ sender: UIStepper) {
@@ -60,35 +81,31 @@ final class ViewController: UIViewController {
     }
     
     @IBAction private func headTypeChanged(_ sender: UISegmentedControl) {
-        fuCalcurator.headType = sender.selectedSegmentIndex == 0 ? .numbers : .charactors
+        fuCalculator.headType = sender.selectedSegmentIndex == 0 ? .numbers : .charactors
     }
     
     @IBAction private func waitingChanged(_ sender: UISegmentedControl) {
-        fuCalcurator.waitingType = FuCalculator.WaitingType.allCases[sender.selectedSegmentIndex]
-    }
-    
-    @IBAction private func isChiToitsuChanged(_ sender: UISwitch) {
-        fuCalcurator.isChiToitsu = sender.isOn
+        fuCalculator.waitingType = FuCalculator.WaitingType.allCases[sender.selectedSegmentIndex]
     }
     
     @IBAction private func setsTypeChaged(_ sender: UISegmentedControl) {
         let index = sender.tag
-        fuCalcurator.sets[index].type = FuCalculator.JongSet.SetType.allCases[sender.selectedSegmentIndex]
+        fuCalculator.sets[index].type = FuCalculator.JongSet.SetType.allCases[sender.selectedSegmentIndex]
     }
 
     @IBAction private func secretChanged(_ sender: UISwitch) {
         let index = sender.tag
-        fuCalcurator.sets[index].isSecret = !sender.isOn
+        fuCalculator.sets[index].isSecret = !sender.isOn
     }
 
     @IBAction private func edgeOrCharactorsChanged(_ sender: UISwitch) {
         let index = sender.tag
-        fuCalcurator.sets[index].isEdgeOrCharactors = sender.isOn
+        fuCalculator.sets[index].isEdgeOrCharactors = sender.isOn
     }
     
     private func updateScore() {
-        let payment = fuCalcurator.winningType == .tsumo ? calc.paymentForTsumo : calc.paymentForRon
-        scoreLabel.text = "\(calc.correctedFu)符\(calc.han)翻 \(payment)"
+        let payment = fuCalculator.winningType == .tsumo ? calc.paymentForTsumo : calc.paymentForRon
+        scoreLabel.text = "\(calc.fu)符\(calc.han)翻 \(payment)"
         hanLabel.text = "\(calc.han)翻:"
         countersLabel.text = "\(calc.counters)本場"
     }

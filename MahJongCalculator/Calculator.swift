@@ -9,10 +9,10 @@
 import Foundation
 
 struct PaymentCalculator {
-    enum Role: Double, CustomStringConvertible {
-        case parent = 1.5, child = 1
+    enum Role: Int, CustomStringConvertible {
+        case parent = 3, child = 2
         
-        fileprivate var multipleScore: Double {
+        fileprivate var multipleScore: Int {
             rawValue
         }
 
@@ -42,26 +42,20 @@ struct PaymentCalculator {
     var role: Role
     var counters: Int
 
-    // If fu is 20 and han is 1, points will be lower than lowest point 1000.
-    // So fu value should be corrected to 30.
-    var correctedFu: Int {
-        guard (han, fu) == (1, 20) else { return fu }
-        return 30
-    }
-    
     private var basePoint: Int {
         switch han {
-        case 13... : return Int(32000 * role.multipleScore)
-        case 11..<13: return Int(24000 * role.multipleScore)
-        case 8..<11: return Int(16000 * role.multipleScore)
-        case 6..<8: return Int(12000 * role.multipleScore)
-        case 5: return Int(8000 * role.multipleScore)
+        case 13... : return 16000 * role.multipleScore
+        case 11..<13: return 12000 * role.multipleScore
+        case 8..<11: return 8000 * role.multipleScore
+        case 6..<8: return 6000 * role.multipleScore
+        case 5: return 4000 * role.multipleScore
         default: return lowerPoint
         }
     }
 
     private var lowerPoint: Int {
-        min(Int(8000 * role.multipleScore), Int(ceil(Double(correctedFu) * 4 * role.multipleScore * pow(2.0, Double(han + 2)) / 100) * 100))
+        let score = fu * (2 << (han + 2)) * role.multipleScore
+        return min(4000 * role.multipleScore, integral(score: Double(score)))
     }
 
     private func integral(score: Double) -> Int {
@@ -83,7 +77,8 @@ struct PaymentCalculator {
 }
 
 struct FuCalculator {
-    static let `default` = FuCalculator(winningType: .tsumo,
+    static let `default` = FuCalculator(exceptionType: .none,
+                                        winningType: .tsumo,
                                         headType: .numbers,
                                         waitingType: .ryanmenOrShabo,
                                         sets: [.init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false),
@@ -91,7 +86,7 @@ struct FuCalculator {
                                                .init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false),
                                                .init(type: .shuntsu, isSecret: true, isEdgeOrCharactors: false)])
     
-    var isChiToitsu: Bool = false
+    var exceptionType: ExceptionType
     var winningType: WinningType
     var headType: HeadType
     var waitingType: WaitingType
@@ -102,12 +97,18 @@ struct FuCalculator {
     }
     
     var score: Int {
-        guard !isChiToitsu else { return 25 }
         guard sets.count == 4 else { return 0 }
-        guard !isPinfuTsumo else { return 20 }
-        let baseScore = winningType.score + headType.score + waitingType.score + sets.reduce(0, {$0 + $1.score}) + 20
-        print(baseScore)
-        return min(110, Int( ceil(Double(baseScore) / 10) * 10))
+        switch exceptionType {
+        case .pinfuTsumo: return 20
+        case .chitoitsu: return 25
+        default:
+            let baseScore = winningType.score + headType.score + waitingType.score + sets.reduce(0, {$0 + $1.score}) + 20
+            return max(30, min(110, Int( ceil(Double(baseScore) / 10) * 10)))
+        }
+    }
+    
+    enum ExceptionType: CaseIterable {
+        case none, pinfuTsumo, chitoitsu
     }
 
     enum WinningType: Int, CaseIterable {
