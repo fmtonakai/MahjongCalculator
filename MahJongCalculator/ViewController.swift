@@ -21,6 +21,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var countersLabel: UILabel!
     @IBOutlet weak var countersStepper: UIStepper!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var winningTypeControl: UISegmentedControl!
     @IBOutlet var segmentedControls: [UISegmentedControl]!
     @IBOutlet var switchControls: [UISwitch]!
     @IBOutlet weak var hanStepper: UIStepper!
@@ -62,13 +63,25 @@ final class ViewController: UIViewController {
     
     @IBAction func exceptionTypeChanged(_ sender: UISegmentedControl) {
         fuCalculator.exceptionType = FuCalculator.ExceptionType.allCases[sender.selectedSegmentIndex]
-        if sender.selectedSegmentIndex == 0 {
+        if fuCalculator.exceptionType == .none {
             isMentsuEditable = true
         }
         else {
             calc.han = max(2, calc.han)
             hanStepper.value = Double(calc.han)
             isMentsuEditable = false
+        }
+        if fuCalculator.exceptionType == .pinfuTsumo {
+            fuCalculator.winningType = .tsumo
+            winningTypeControl.selectedSegmentIndex = 0
+            (0..<winningTypeControl.numberOfSegments).forEach {
+                winningTypeControl.setEnabled($0 == 0, forSegmentAt: $0)
+            }
+        }
+        else {
+            (0..<winningTypeControl.numberOfSegments).forEach {
+                winningTypeControl.setEnabled(true, forSegmentAt: $0)
+            }
         }
     }
     

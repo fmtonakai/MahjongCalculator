@@ -390,6 +390,7 @@
                         <outlet property="hanStepper" destination="stR-S9-qoe" id="yZs-h1-bdL"/>
                         <outlet property="mentsuStackView" destination="dfT-D1-Dsj" id="ztf-oE-67Q"/>
                         <outlet property="scoreLabel" destination="cWe-rV-STv" id="1em-P1-IrC"/>
+                        <outlet property="winningTypeControl" destination="ysH-ij-hgx" id="WQ2-j6-R12"/>
                         <outletCollection property="segmentedControls" destination="IqY-e2-5Ns" collectionClass="NSMutableArray" id="3s2-QV-45O"/>
                         <outletCollection property="segmentedControls" destination="ysH-ij-hgx" collectionClass="NSMutableArray" id="0jb-rr-IWP"/>
                         <outletCollection property="segmentedControls" destination="uNm-bN-bUh" collectionClass="NSMutableArray" id="ahQ-ft-sMt"/>
