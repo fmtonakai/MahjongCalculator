@@ -65,9 +65,11 @@ final class ViewController: UIViewController {
         fuCalculator.exceptionType = FuCalculator.ExceptionType.allCases[sender.selectedSegmentIndex]
         if fuCalculator.exceptionType == .none {
             isMentsuEditable = true
+            hanStepper.minimumValue = 1
         }
         else {
             calc.han = max(2, calc.han)
+            hanStepper.minimumValue = 2
             hanStepper.value = Double(calc.han)
             isMentsuEditable = false
         }
