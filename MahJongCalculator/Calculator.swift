@@ -55,23 +55,22 @@ struct PaymentCalculator {
 
     private var lowerPoint: Int {
         let score = fu * (2 << (han + 2)) * role.multipleScore
-        return min(4000 * role.multipleScore, integral(score: Double(score)))
+        return min(4000 * role.multipleScore, integral(score: score))
     }
 
-    private func integral(score: Double) -> Int {
-        Int(ceil(score / 100) * 100)
+    private func integral(score: Int) -> Int {
+        Int(ceil(Double(score) / 100) * 100)
     }
 
     var paymentForRon: Payment {
-        return .direct(integral(score: (Double(basePoint))) + 300 * counters)
+        return .direct(integral(score: basePoint) + 300 * counters)
     }
 
     var paymentForTsumo: Payment {
-        let point = Double(basePoint)
         switch role {
-        case .parent: return .all(integral(score: point / 3) + 100 * counters)
-        case .child: return .normal(parent: integral(score: point / 2) + 100 * counters,
-                                    child: integral(score: point / 4) + 100 * counters)
+        case .parent: return .all(integral(score: basePoint / 3) + 100 * counters)
+        case .child: return .normal(parent: integral(score: basePoint / 2) + 100 * counters,
+                                    child: integral(score: basePoint / 4) + 100 * counters)
         }
     }
 }

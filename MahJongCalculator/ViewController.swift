@@ -50,7 +50,7 @@ final class ViewController: UIViewController {
         fuCalculator = .default
         segmentedControls.forEach({ $0.selectedSegmentIndex = 0 })
         switchControls.forEach({ $0.isOn = false })
-        isMentsuEditable = true
+        updateControlState()
     }
     
     @IBAction private func countersChanged(_ sender: UIStepper) {
@@ -63,28 +63,7 @@ final class ViewController: UIViewController {
     
     @IBAction func exceptionTypeChanged(_ sender: UISegmentedControl) {
         fuCalculator.exceptionType = FuCalculator.ExceptionType.allCases[sender.selectedSegmentIndex]
-        if fuCalculator.exceptionType == .none {
-            isMentsuEditable = true
-            hanStepper.minimumValue = 1
-        }
-        else {
-            calc.han = max(2, calc.han)
-            hanStepper.minimumValue = 2
-            hanStepper.value = Double(calc.han)
-            isMentsuEditable = false
-        }
-        if fuCalculator.exceptionType == .pinfuTsumo {
-            fuCalculator.winningType = .tsumo
-            winningTypeControl.selectedSegmentIndex = 0
-            (0..<winningTypeControl.numberOfSegments).forEach {
-                winningTypeControl.setEnabled($0 == 0, forSegmentAt: $0)
-            }
-        }
-        else {
-            (0..<winningTypeControl.numberOfSegments).forEach {
-                winningTypeControl.setEnabled(true, forSegmentAt: $0)
-            }
-        }
+        updateControlState()
     }
     
     @IBAction private func winningTypeChanged(_ sender: UISegmentedControl) {
@@ -123,6 +102,31 @@ final class ViewController: UIViewController {
         scoreLabel.text = "\(calc.fu)符\(calc.han)翻 \(payment)"
         hanLabel.text = "\(calc.han)翻:"
         countersLabel.text = "\(calc.counters)本場"
+    }
+    
+    private func updateControlState() {
+        if fuCalculator.exceptionType == .none {
+            isMentsuEditable = true
+            hanStepper.minimumValue = 1
+        }
+        else {
+            calc.han = max(2, calc.han)
+            hanStepper.minimumValue = 2
+            isMentsuEditable = false
+        }
+        hanStepper.value = Double(calc.han)
+        if fuCalculator.exceptionType == .pinfuTsumo {
+            fuCalculator.winningType = .tsumo
+            winningTypeControl.selectedSegmentIndex = 0
+            (0..<winningTypeControl.numberOfSegments).forEach {
+                winningTypeControl.setEnabled($0 == 0, forSegmentAt: $0)
+            }
+        }
+        else {
+            (0..<winningTypeControl.numberOfSegments).forEach {
+                winningTypeControl.setEnabled(true, forSegmentAt: $0)
+            }
+        }
     }
     
     private func applyDarkForNonDarkModeOS() {
