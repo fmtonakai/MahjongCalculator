@@ -24,7 +24,7 @@ struct PaymentCalculator {
         }
     }
 
-    enum Payment: CustomStringConvertible {
+    enum Payment: CustomStringConvertible, Equatable {
         case all(Int)
         case normal(parent: Int, child: Int)
         case direct(Int)
@@ -37,6 +37,7 @@ struct PaymentCalculator {
             }
         }
     }
+    
     var han: Int
     var fu: Int
     var role: Role

@@ -12,9 +12,9 @@
 		DA5E102023F44CD80032D38B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5E101E23F44CD80032D38B /* Main.storyboard */; };
 		DA5E102223F44CD90032D38B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA5E102123F44CD90032D38B /* Assets.xcassets */; };
 		DA5E102523F44CD90032D38B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5E102323F44CD90032D38B /* LaunchScreen.storyboard */; };
-		DA5E103023F44CD90032D38B /* MahJongCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5E102F23F44CD90032D38B /* MahJongCalculatorTests.swift */; };
 		DA5E103B23F44CD90032D38B /* MahJongCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5E103A23F44CD90032D38B /* MahJongCalculatorUITests.swift */; };
 		DA5E104923F44EA00032D38B /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5E104823F44EA00032D38B /* Calculator.swift */; };
+		DA951B8824018BC4003B8762 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA951B8724018BC4003B8762 /* CalculatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA5E101523F44CD80032D38B /* 麻雀点数計算.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "麻雀点数計算.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA5E101523F44CD80032D38B /* MahJongCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MahJongCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5E101823F44CD80032D38B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA5E101C23F44CD80032D38B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DA5E101F23F44CD80032D38B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,12 +43,12 @@
 		DA5E102423F44CD90032D38B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA5E102623F44CD90032D38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA5E102B23F44CD90032D38B /* MahJongCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MahJongCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA5E102F23F44CD90032D38B /* MahJongCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MahJongCalculatorTests.swift; sourceTree = "<group>"; };
 		DA5E103123F44CD90032D38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA5E103623F44CD90032D38B /* MahJongCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MahJongCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5E103A23F44CD90032D38B /* MahJongCalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MahJongCalculatorUITests.swift; sourceTree = "<group>"; };
 		DA5E103C23F44CD90032D38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA5E104823F44EA00032D38B /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
+		DA951B8724018BC4003B8762 /* CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,7 @@
 		DA5E101623F44CD80032D38B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA5E101523F44CD80032D38B /* 麻雀点数計算.app */,
+				DA5E101523F44CD80032D38B /* MahJongCalculator.app */,
 				DA5E102B23F44CD90032D38B /* MahJongCalculatorTests.xctest */,
 				DA5E103623F44CD90032D38B /* MahJongCalculatorUITests.xctest */,
 			);
@@ -113,7 +113,7 @@
 		DA5E102E23F44CD90032D38B /* MahJongCalculatorTests */ = {
 			isa = PBXGroup;
 			children = (
-				DA5E102F23F44CD90032D38B /* MahJongCalculatorTests.swift */,
+				DA951B8724018BC4003B8762 /* CalculatorTests.swift */,
 				DA5E103123F44CD90032D38B /* Info.plist */,
 			);
 			path = MahJongCalculatorTests;
@@ -145,7 +145,7 @@
 			);
 			name = MahJongCalculator;
 			productName = MahJongCalculator;
-			productReference = DA5E101523F44CD80032D38B /* 麻雀点数計算.app */;
+			productReference = DA5E101523F44CD80032D38B /* MahJongCalculator.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DA5E102A23F44CD90032D38B /* MahJongCalculatorTests */ = {
@@ -269,7 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA5E103023F44CD90032D38B /* MahJongCalculatorTests.swift in Sources */,
+				DA951B8824018BC4003B8762 /* CalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +436,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7V44RVA58;
+				DISPLAY_NAME = "麻雀点数計算";
 				INFOPLIST_FILE = MahJongCalculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,7 +444,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fmtonakai.MahJongCalculator;
-				PRODUCT_NAME = "麻雀点数計算";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -456,6 +457,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7V44RVA58;
+				DISPLAY_NAME = "麻雀点数計算";
 				INFOPLIST_FILE = MahJongCalculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -463,7 +465,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fmtonakai.MahJongCalculator;
-				PRODUCT_NAME = "麻雀点数計算";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
